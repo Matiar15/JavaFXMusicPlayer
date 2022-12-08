@@ -1,47 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.mediaplayerjfx.HelloController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.mediaplayerjfx.HelloController">
     <children>
-        <ImageView fx:id="musicImage" fitHeight="221.0" fitWidth="224.0" layoutX="188.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true" />
-        <ListView fx:id="playlistView" disable="true" editable="true" layoutX="14.0" layoutY="14.0" prefHeight="353.0" prefWidth="160.0" />
-        <ButtonBar fx:id="buttonBar" layoutX="165.0" layoutY="327.0" prefHeight="40.0" prefWidth="254.0">
+        <ListView fx:id="playlistView" disable="true" editable="true" layoutX="14.0" layoutY="15.0" prefHeight="372.0" prefWidth="140.0" />
+        <ButtonBar buttonMinWidth="30.0" layoutX="151.0" layoutY="356.0" prefHeight="30.0" prefWidth="238.0">
             <buttons>
-                <Button fx:id="playButton" lineSpacing="0.25" mnemonicParsing="false" onAction="#handleButtonStartAction" prefHeight="40.0" prefWidth="100.0" text="Play" textAlignment="JUSTIFY">
+                <Button fx:id="playButton" alignment="CENTER" lineSpacing="0.25" minWidth="48.0" mnemonicParsing="false" onAction="#handleButtonStartAction" prefHeight="40.0" prefWidth="100.0" text="Play" textAlignment="JUSTIFY">
                     <font>
-                        <Font name="Fira Code Bold" size="18.0" />
+                        <Font name="Fira Code Bold" size="14.0" />
                     </font>
                 </Button>
-                <Button fx:id="pauseButton" alignment="CENTER" contentDisplay="BOTTOM" lineSpacing="0.25" mnemonicParsing="false" onAction="#handleButtonStopAction" prefHeight="40.0" prefWidth="158.0" text="Pause" textAlignment="JUSTIFY">
+                <Button fx:id="pauseButton" alignment="CENTER" contentDisplay="BOTTOM" lineSpacing="0.25" minWidth="48.0" mnemonicParsing="false" onAction="#handleButtonStopAction" prefHeight="40.0" prefWidth="100.0" text="Pause" textAlignment="JUSTIFY" textOverrun="CLIP">
                     <font>
-                        <Font name="Fira Code Bold" size="18.0" />
+                        <Font name="Fira Code Bold" size="14.0" />
                     </font>
-                    <cursor>
-                        <Cursor fx:constant="DEFAULT" />
-                    </cursor>
+                </Button>
+                <Button fx:id="nextButton" alignment="CENTER" contentDisplay="TOP" lineSpacing="0.25" minWidth="48.0" mnemonicParsing="false" onAction="#handleButtonNextAction" prefHeight="40.0" prefWidth="100.0" text="Next" textAlignment="JUSTIFY" textOverrun="CLIP">
+                    <font>
+                        <Font name="Fira Code Bold" size="14.0" />
+                    </font>
                 </Button>
             </buttons>
         </ButtonBar>
-      <ImageView fx:id="nextSongImage" fitHeight="76.0" fitWidth="98.0" layoutX="475.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="nextSongLabel" alignment="TOP_CENTER" contentDisplay="BOTTOM" layoutX="485.0" layoutY="90.0" prefHeight="17.0" prefWidth="79.0" text="Next Song" textAlignment="CENTER" AnchorPane.bottomAnchor="293.0">
-         <font>
-            <Font name="Fira Code Bold" size="12.0" />
-         </font>
-      </Label>
-      <ProgressBar fx:id="songProgressBar" layoutX="200.0" layoutY="287.0" opacity="0.28" prefWidth="200.0" progress="0.0" />
-      <Label fx:id="currentSongTimeLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="211.0" layoutY="270.0" prefHeight="17.0" prefWidth="179.0">
-         <font>
-            <Font name="Fira Code Regular" size="12.0" />
-         </font></Label>
-      <Label fx:id="currentSongTitleLabel" alignment="CENTER" layoutX="200.0" layoutY="256.0" prefHeight="17.0" prefWidth="200.0" textAlignment="CENTER">
-         <font>
-            <Font name="Fira Code Bold" size="12.0" />
-         </font>
-      </Label>
+        <Label fx:id="albumLabel" layoutX="14.0" prefHeight="5.0" prefWidth="129.0" />
+      <Slider fx:id="timeSlider" layoutX="174.0" layoutY="326.0" prefHeight="24.0" prefWidth="218.0" />
+      <Slider layoutX="162.0" layoutY="129.0" orientation="VERTICAL" prefHeight="68.0" prefWidth="24.0" />
+      <ToggleButton graphicTextGap="0.0" layoutX="324.0" layoutY="15.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="22.0" minWidth="54.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="54.0" />
+      <FlowPane layoutX="235.0" layoutY="312.0" prefHeight="18.0" prefWidth="96.0">
+         <children>
+              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="31.0" text="Time:" textAlignment="CENTER">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Label>
+            <Label fx:id="currentSongTimeLabel" prefHeight="17.0" prefWidth="64.0" text="00,00 : 00,00">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Label>
+         </children>
+      </FlowPane>
+      <FlowPane layoutX="183.0" layoutY="261.0" prefHeight="34.0" prefWidth="200.0">
+         <children>
+            <Label fx:id="defaultSongLabel" alignment="TOP_CENTER" prefHeight="15.0" prefWidth="79.0" text="Current Song :" wrapText="true">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Label>
+              <Label fx:id="currentSongTitleLabel" alignment="TOP_LEFT" contentDisplay="CENTER" prefHeight="40.0" prefWidth="120.0" text="Current Song (template)" wrapText="true">
+                  <font>
+                      <Font size="11.0" />
+                  </font>
+              </Label>
+         </children>
+      </FlowPane>
+      <FlowPane layoutX="183.0" layoutY="221.0" prefHeight="40.0" prefWidth="200.0">
+         <children>
+              <Label fx:id="nextSongLabel" alignment="TOP_CENTER" prefHeight="15.0" prefWidth="79.0" text="Next Song :">
+                  <font>
+                      <Font size="11.0" />
+                  </font>
+              </Label>
+            <Label fx:id="nextSongLabelUpdate" alignment="TOP_LEFT" prefHeight="40.0" prefWidth="109.0" text="Next Song (template)" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Label>
+         </children>
+      </FlowPane>
     </children>
 </AnchorPane>
