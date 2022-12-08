@@ -12,24 +12,24 @@ public class Tasker extends Task<Integer> {
 
     @Override
     protected Integer call() throws Exception {
-
+        int start1 = minuteCalc(start); // used for text view on the root
         while (start != end) {
             if (isCancelled()) { break; }
-            start = minuteCalc(start);
-            updateValue(start);
+            updateValue(start1);
             updateProgress(start, end);
             Thread.sleep(1000);
             start += 1;
+            start1 += 1; // used for calculating time left
         }
         return start;
     }
     public int minuteCalc (int number) {
-        if (number == 60) return number = 100;
-        else if (number == 160) return number = 200;
-        else if (number == 260) return number = 300;
+        if (number == 60) return 100;
+        else if (number == 160) return 200;
+        else if (number == 260) return 300;
         return number;
     }
     public int[] getData() {
-        return new int[]{this.start, this.end};
+        return new int[] {this.start, this.end};
     }
 }
