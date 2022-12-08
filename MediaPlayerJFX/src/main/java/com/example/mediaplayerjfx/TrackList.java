@@ -3,29 +3,34 @@ package com.example.mediaplayerjfx;
 import com.mpatric.mp3agic.InvalidDataException;
 import com.mpatric.mp3agic.Mp3File;
 import com.mpatric.mp3agic.UnsupportedTagException;
-
 import java.io.File;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
 
 public class TrackList {
-    private String dirName;
-    private final File directory = new File(System.getProperty("user.dir") + "\\MediaPlayerJFX\\src\\main\\java\\MainAlbum") ;
-    private final LinkedHashSet<Track> trackSet = new LinkedHashSet<>();
-    private final LinkedHashSet<String> tracksNames = new LinkedHashSet<>();
-    public TrackList(String dirName) {
+
+    private final String dirName;
+    private final File directory;
+    public TrackList(String dirName, File directory) {
         this.dirName = dirName;
+        this.directory = directory;
     }
-
-    public void createTracks() throws InvalidDataException, UnsupportedTagException, IOException {
-        File[] trackCollection = directory.listFiles();
-
-        for (int i = 0; i < Objects.requireNonNull(trackCollection).length; i++) {
-            trackSet.add(new Track(new Mp3File(trackCollection[i].getAbsolutePath())));
-            tracksNames.add(trackSet[i].get)
+    public String getDirName() {
+        return dirName;
+    }
+    public File[] setTrackFileCollection() { return directory.listFiles(); }
+    public ArrayList<File> setFileTrackCollection(File[] fileCollection) {
+        ArrayList<File> fileTrackCollection = new ArrayList<>();
+        for (File file : fileCollection) {
+            fileTrackCollection.add(new File(file.getAbsolutePath()));
         }
-        Collections.shuffle((List<?>) trackSet);
-
+        return fileTrackCollection;
     }
-
+    public ArrayList<Track> setTrackCollection(File[] fileCollection) throws InvalidDataException, UnsupportedTagException, IOException {
+        ArrayList<Track> trackCollection = new ArrayList<>();
+        for (File file : fileCollection) {
+            trackCollection.add(new Track(new Mp3File(file)));
+        }
+        return trackCollection;
+    }
 }
