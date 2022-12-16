@@ -36,6 +36,7 @@ public class HelloController implements Initializable {
     int currentTrackIndex = 0;
     int nextTrackIndex = 1;
     int startOrStop = 0;
+    double temporaryVolumeData = 0;
     private boolean stoppedRunning;
     Tasker tasker;
     TrackList trackList;
@@ -68,7 +69,11 @@ public class HelloController implements Initializable {
         try {
             trackMp3Collection = trackList.setListOfMp3Files(fileCollection);
         } catch (InvalidDataException | UnsupportedTagException | IOException e) {
-            throw new RuntimeException(e);
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Something went wrong with the file!");
+            alert.setContentText("You have probably used a wrong type of file (either program can't access it," +
+                    " or it doesn't contain any .mp3 files).");
+            alert.show();
         }
         fileTrackCollection = trackList.setListOfTracksFiles(fileCollection);
         albumLabel.setText(trackList.getDirName());
@@ -82,14 +87,12 @@ public class HelloController implements Initializable {
         playlistView.getSelectionModel().select(currentTrackIndex);
         isNextTrack();
     }
-    
     @FXML
     public void handlePlaylistViewSelection(MouseEvent click) {
         if (click.getClickCount() == 2) {
             setIndexValues("none");
         }
     }
-    
     @FXML
     public void handleButtonStartStopAction(ActionEvent actionEvent) {
         if (playPauseButton.getText().equals(">")) {
@@ -102,25 +105,30 @@ public class HelloController implements Initializable {
         }
         startOrStop++;
     }
-    
     @FXML
     public void handleButtonPreviousAction(ActionEvent actionEvent) {
         setIndexValues("previous");
     }
-    
     @FXML
     public void handleButtonNextAction(ActionEvent actionEvent) {
         setIndexValues("next");
     }
-    
     @FXML
     public void handleButtonDarkLight(ActionEvent actionEvent) {
 
     }
-    
     @FXML
     public void handleButtonMuteAction(ActionEvent actionEvent) {
-
+        if (muteButton.getText().equals("Mute")) {
+            temporaryVolumeData = volumeSlider.getValue();
+            mediaPlayer.setVolume(0);
+            volumeSlider.setValue(0);
+            muteButton.setText("Unmute");
+        } else {
+            muteButton.setText("Mute");
+            mediaPlayer.setVolume(temporaryVolumeData);
+            volumeSlider.setValue(temporaryVolumeData);
+        }
     }
 
     @FXML
@@ -132,7 +140,6 @@ public class HelloController implements Initializable {
             }
         });
     }
-    
     @FXML
     public void stopSlider() {
         timeSlider.setOnMousePressed(new EventHandler<MouseEvent>() {
@@ -146,7 +153,6 @@ public class HelloController implements Initializable {
             }
         });
     }
-    
     @FXML
     public void skipTrack() {
         timeSlider.setOnMouseReleased((EventHandler<Event>) eventEvent -> {
@@ -178,7 +184,6 @@ public class HelloController implements Initializable {
         th.setDaemon(true);
         th.start();
     }
-    
     public String secondsToMinutes(long seconds) {
         int mins, secs;
         mins = (int) (seconds % 3600) / 60;
