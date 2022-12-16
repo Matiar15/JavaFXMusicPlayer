@@ -29,10 +29,10 @@
         </ButtonBar>
         <Label fx:id="albumLabel" layoutX="14.0" prefHeight="5.0" prefWidth="129.0" />
       <Slider fx:id="timeSlider" layoutX="175.0" layoutY="326.0" majorTickUnit="10.0" minorTickCount="1" onMousePressed="#stopSlider" onMouseReleased="#skipTrack" prefHeight="24.0" prefWidth="218.0" />
-      <Slider fx:id="volumeSlider" layoutX="366.0" layoutY="43.0" majorTickUnit="10.0" minorTickCount="1" onDragDetected="#setVolume" orientation="VERTICAL" prefHeight="119.0" prefWidth="24.0" value="50.0" />
-      <Button fx:id="muteButton" graphicTextGap="0.0" layoutX="359.0" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="22.0" minWidth="17.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="38.0" text="Mute">
+      <Slider fx:id="volumeSlider" layoutX="362.0" layoutY="29.0" majorTickUnit="10.0" minorTickCount="1" onDragDetected="#setVolume" orientation="VERTICAL" prefHeight="119.0" prefWidth="24.0" value="50.0" />
+      <Button fx:id="muteButton" graphicTextGap="0.0" layoutX="349.0" layoutY="164.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="22.0" minWidth="17.0" mnemonicParsing="false" onAction="#handleButtonMuteAction" prefHeight="31.0" prefWidth="45.0" text="Mute">
          <font>
-            <Font size="10.0" />
+            <Font size="8.0" />
          </font></Button>
       <StackPane layoutX="195.0" layoutY="299.0" prefHeight="24.0" prefWidth="179.0">
          <children>
@@ -53,7 +53,7 @@
               </Label>
          </children>
       </FlowPane>
-      <FlowPane layoutX="184.0" layoutY="185.0" prefHeight="58.0" prefWidth="200.0">
+      <FlowPane layoutX="184.0" layoutY="179.0" prefHeight="58.0" prefWidth="200.0">
          <children>
               <Label alignment="TOP_CENTER" prefHeight="15.0" prefWidth="79.0" text="Next Song :">
                   <font>
@@ -67,11 +67,11 @@
             </Label>
          </children>
       </FlowPane>
-      <Label layoutX="359.0" layoutY="162.0" prefHeight="17.0" prefWidth="38.0" text="Volume">
+      <Label layoutX="355.0" layoutY="147.0" prefHeight="17.0" prefWidth="38.0" text="Volume">
          <font>
             <Font size="10.0" />
          </font></Label>
-      <ImageView fx:id="songImage" fitHeight="133.0" fitWidth="173.0" layoutX="177.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="songImage" fitHeight="128.0" fitWidth="166.0" layoutX="182.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true" />
       <Button fx:id="darkLightButton" layoutX="165.0" layoutY="17.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="24.0" />
     </children>
 </AnchorPane>
